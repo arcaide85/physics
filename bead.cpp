@@ -8,11 +8,11 @@ const int height = 600;
 const int fps = 60;
 
 struct Bead {
-    float radius;       // bead is a circle
-    float mass;         // all particle has mass
-    Vector2 pos;        // bead current position
-    Vector2 prevPos;    // bead previous position for implicit velocity calculation 
-    Vector2 vel;        // explicity
+    float radius;
+    float mass;
+    Vector2 pos;
+    Vector2 prevPos;
+    Vector2 vel;
 
     Bead() : radius(0.0f), mass(1.0f), pos{0.0f, 0.0f}, prevPos{0.0f, 0.0f}, vel{0.0f, 0.0f} {} 
 
