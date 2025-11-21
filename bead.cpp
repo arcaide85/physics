@@ -16,7 +16,7 @@ struct Bead {
 
     Bead() : radius(0.0f), mass(1.0f), pos{0.0f, 0.0f}, prevPos{0.0f, 0.0f}, vel{0.0f, 0.0f} {} 
 
-    Bead(float r, float m, Vector2 p) : radius(r), mass(m), pos(p), prevPos(p), vel{0.0f, 0.0f} {} // function body is empty
+    Bead(float r, float m, Vector2 p) : radius(r), mass(m), pos(p), prevPos(p), vel{0.0f, 0.0f} {}
 
     void startStep(float dt, Vector2 gravity) {
         vel.x += gravity.x * dt;
@@ -47,13 +47,11 @@ struct Bead {
     }
 
     void endStep(float dt) {
-        // x = xo + v*dt -> v = (x - xo) / dt
         vel.x = (pos.x - prevPos.x) / dt;
         vel.y = (pos.y - prevPos.y) / dt;
     }
 };
 
-// AnalyticBead - Analytical solution
 struct AnalyticBead {
     float radius;
     float beadRadius;
@@ -85,20 +83,20 @@ struct AnalyticBead {
 };
 
 struct PhysicsScene {
-    float dt = 1.0f / fps;          // time step
-    float wireRadius = 0.0f;        // circle radius
-    float pbdForce = 0.0f;          // debug
-    float analyticForce = 0.0f;     // debug
+    float dt = 1.0f / fps;
+    float wireRadius = 0.0f;
+    float pbdForce = 0.0f;
+    float analyticForce = 0.0f;
 
     int numSteps = 100;
 
     bool paused = false;
 
-    Vector2 gravity = {0.0f, -9.81f};   // ext force
-    Vector2 wireCenter = {0.0f, 0.0f};  // circle center
+    Vector2 gravity = {0.0f, -9.81f};
+    Vector2 wireCenter = {0.0f, 0.0f};
     
-    Bead bead;                  // the bead
-    AnalyticBead analyticBead;  // the analytic bead
+    Bead bead;
+    AnalyticBead analyticBead;
 };
 
 PhysicsScene physicsScene;
@@ -145,7 +143,6 @@ void SetupScene() {
 
 }
 
-// Simulation
 void Simulate() {
     if (physicsScene.paused) return;
 
@@ -174,7 +171,6 @@ void Simulate() {
 
 }
 
-// Rendering
 void Draw() {
     BeginDrawing();
         ClearBackground(BLACK);
@@ -210,7 +206,6 @@ void Draw() {
     EndDrawing();
 }
 
-// Input Handler
 void InputHandler() {
     if (IsKeyPressed(KEY_SPACE)) {
         physicsScene.paused = !physicsScene.paused;
@@ -225,7 +220,6 @@ void InputHandler() {
     }
 }
 
-// Main
 int main() {
     InitWindow(width, height, "BEAD PBD");
 
