@@ -106,7 +106,7 @@ Vector2 toScreen(Vector2 simPos) {
     float cScale = fminf(width, height) / simMinWidth;
     return {
         simPos.x * cScale,
-        height - simPos.y * cScale // Flip Y for rendering
+        height - simPos.y * cScale
     };
 }
 
@@ -126,7 +126,7 @@ void SetupScene() {
     float simHeight = height / cScale;
 
     physicsScene.wireCenter = {simWidth / 2.0f, simHeight / 2.0f};
-    physicsScene.wireRadius = simMinWidth * 0.4f;   // 0.8 meters
+    physicsScene.wireRadius = simMinWidth * 0.4f;
 
     Vector2 startPos = {
         physicsScene.wireCenter.x + physicsScene.wireRadius,
@@ -159,7 +159,7 @@ void Simulate() {
         
         physicsScene.bead.endStep(sdt);
 
-        float acceleration = fabsf(lambda / (sdt * sdt));  // a ~ distance / t*t, distance here is lambda
+        float acceleration = fabsf(lambda / (sdt * sdt));
         float stepForce = physicsScene.bead.mass * acceleration;
         if(stepForce > maxForce) maxForce = stepForce;
 
